@@ -1,4 +1,7 @@
 package br.univel;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -19,7 +22,12 @@ public class SimpleReport {
 		JasperPrint jasperPrint = null;
 		TableModelData();
 		try {
-			jasperPrint = JasperFillManager.fillReport(arq, null,
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+					map.put("empresa","petrobras");
+					map.put("telefone", "123pim567pim");
+			
+			jasperPrint = JasperFillManager.fillReport(arq, map,
 					new JRTableModelDataSource(tableModel));
 			JasperViewer jasperViewer = new JasperViewer(jasperPrint);
 			jasperViewer.setVisible(true);
